@@ -5,17 +5,20 @@
 //  Created by Дмитрий Снигирев on 27.05.2024.
 //
 
+import FirebaseAuth
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var viewModel: AuthViewModel
+        
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+            if viewModel.userSession != nil {
+                ProfileView()
+            } else {
+                LoginView()
         }
-        .padding()
     }
 }
 
