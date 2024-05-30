@@ -14,26 +14,27 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        if let user = viewModel.currentUser {
             List {
-                Section {
-                    VStack(alignment: .leading) {
-                        Text(user.name)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        
-                        Text(user.email)
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .accentColor(.gray)
+                if let user = viewModel.currentUser {
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text(user.name)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                            
+                            Text(user.email)
+                                .font(.caption)
+                                .fontWeight(.regular)
+                                .accentColor(.gray)
+                        }
                     }
-                }
-                
-                Section {
-                    Button {
-                        print("favor")
-                    } label: {
-                        ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
+                    
+                    Section {
+                        Button {
+                            print("favor")
+                        } label: {
+                            ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
+                        }
                     }
                 }
                 
@@ -63,7 +64,8 @@ struct ProfileView: View {
             }
         }
     }
-}
+
+
 #Preview {
     ProfileView()
 }

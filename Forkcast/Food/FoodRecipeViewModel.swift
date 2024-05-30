@@ -7,11 +7,10 @@
 
 import FirebaseFirestore
 import FirebaseStorage
-import SwiftUI
 
 class FoodRecipeViewModel: ObservableObject {
     
-    @Published var recipes = [FoodRecipeModel]()
+    @Published var recipes: [FoodRecipeModel] = []
     
     private var db = Firestore.firestore()
     private let storage = Storage.storage()

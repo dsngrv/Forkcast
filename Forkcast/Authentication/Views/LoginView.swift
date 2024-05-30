@@ -66,6 +66,18 @@ struct LoginView: View {
                     .foregroundColor(.blue)
                     .padding()
                 }
+                
+//                NavigationLink {
+//                    ContentView()
+//                        .navigationBarBackButtonHidden(true)
+//                } label: {
+//                    HStack {
+//                        Text("I'm just looking 🧐")
+//                            .fontWeight(.bold)
+//                    }
+//                    .foregroundColor(.blue)
+//                    .padding()
+//                }
             }
             .background(.orange)
             .onTapGesture {
