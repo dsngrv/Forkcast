@@ -20,20 +20,22 @@ struct LoginView: View {
                 VStack{
                     VStack() {
                         Image("forkrain")
+                            .renderingMode(.template)
                             .resizable()
+                            .foregroundColor(Color("accent"))
                             .frame(width: 300, height: 300)
                         
                         Text("FORKCAST")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("accent"))
                             .font(.title)
                             .fontWeight(.black)
                         
                     }
                     
-                    CustomTextField(pholder: "Email", isSecure: false, isEmail: true, image: "mail", text: $email)
+                    CustomTextField(pholder: "Email", isEmail: true, image: "mail", text: $email)
                         .padding(.top, 25)
                     
-                    CustomTextField(pholder: "Password", isSecure: true, isEmail: false, image: "lock", text: $password)
+                    CustomTextField(pholder: "Password", isSecure: true, image: "lock", text: $password)
                         .padding(.top, 10)
                 }
                 .padding(.leading ,50)
@@ -63,7 +65,7 @@ struct LoginView: View {
                         Text("Sign Up")
                             .fontWeight(.bold)
                     }
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color("accent"))
                     .padding()
                 }
                 
@@ -79,7 +81,7 @@ struct LoginView: View {
 //                    .padding()
 //                }
             }
-            .background(.orange)
+            .background(Color("background"))
             .onTapGesture {
                 hideKeyboard()
             }

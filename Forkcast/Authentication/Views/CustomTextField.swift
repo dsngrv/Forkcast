@@ -11,21 +11,22 @@ import SwiftUI
 
 struct CustomTextField: View {
     var pholder: String
-    @State var isSecure: Bool
-    @State var isEmail: Bool
+    @State var isSecure: Bool?
+    @State var isEmail: Bool?
+    @State var isSearch: Bool?
     @State var image: String
     @Binding var text: String
     @FocusState var isEnabled: Bool
     
     var body: some View {
-        if isSecure {
-            RoundedRectangle(cornerRadius: 10)
+        if isSecure != nil {
+            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color("accent"))
                 .foregroundColor(.white)
                 .frame(height: 50)
                 .overlay {
                     HStack() {
                         Image(systemName: image)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("accent"))
                             .padding(10)
                         
                         SecureField(pholder, text: $text)
@@ -40,14 +41,14 @@ struct CustomTextField: View {
                         }
                     }
                 }
-        } else if isEmail {
-            RoundedRectangle(cornerRadius: 10)
+        } else if isEmail != nil {
+            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color("accent"))
                 .foregroundColor(.white)
                 .frame(height: 50)
                 .overlay {
                     HStack() {
                         Image(systemName: image)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("accent"))
                             .padding(10)
                         
                         TextField(pholder, text: $text)
@@ -62,8 +63,23 @@ struct CustomTextField: View {
                         }
                     }
                 }
+        } else if isSearch != nil {
+            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color("accent"))
+                .foregroundColor(.orange)
+                .frame(height: 50)
+                .overlay {
+                    HStack() {
+                        Image(systemName: image)
+                            .foregroundColor(Color("accent"))
+                            .padding(10)
+                        
+                        TextField(pholder, text: $text)
+                            .keyboardType(.default)
+                            .focused($isEnabled)
+                    }
+                }
         } else {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color("accent"))
                 .foregroundColor(.white)
                 .frame(height: 50)
                 .overlay {

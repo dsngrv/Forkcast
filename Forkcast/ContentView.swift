@@ -20,17 +20,19 @@ struct ContentView: View {
                         .tabItem {
                             Label("Food", systemImage: "fork.knife")
                         }
-                    
+
                     Text("Drinks")
                         .tabItem {
                             Label("Drinks", systemImage: "mug.fill")
                         }
-                    
+
                     ProfileView()
                         .tabItem {
                             Label("Profile", systemImage: "person")
                         }
+
                 }
+                .accentColor(Color("accent"))
             } else {
                 LoginView()
         }

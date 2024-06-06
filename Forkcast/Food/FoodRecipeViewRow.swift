@@ -22,6 +22,7 @@ struct FoodRecipeViewRow: View {
                         .frame(width: 360, height: 220)
                         .scaledToFill()
                         .cornerRadius(10)
+//                        .colorMultiply(Color("filterImage"))
                 } placeholder: {
                     ProgressView()
                 }
@@ -30,7 +31,7 @@ struct FoodRecipeViewRow: View {
             VStack {
                 HStack {
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color("accent"))
                         .frame(height: 30)
                         .overlay {
                             Text(recipe.title)
@@ -40,12 +41,11 @@ struct FoodRecipeViewRow: View {
                     Spacer()
                     
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color("accent"))
                         .frame(width: 90, height: 30)
                         .overlay {
-                            Text("Tag")
+                            Text(recipe.tag)
                                 .font(.caption)
-                                .fontWeight(.bold)
                         }
                 }
                 .padding(.top, 10)

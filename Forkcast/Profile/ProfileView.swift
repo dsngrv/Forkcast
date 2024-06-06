@@ -14,7 +14,8 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-            List {
+        NavigationView {
+            Form {
                 if let user = viewModel.currentUser {
                     Section {
                         VStack(alignment: .leading) {
@@ -29,12 +30,10 @@ struct ProfileView: View {
                         }
                     }
                     
-                    Section {
-                        Button {
-                            print("favor")
-                        } label: {
-                            ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
-                        }
+                    Button {
+                        print("favor")
+                    } label: {
+                        ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
                     }
                 }
                 
@@ -42,7 +41,7 @@ struct ProfileView: View {
                     HStack {
                         ProfileViewRow(imageName: "sun.max", title: "App Theme", tintColor: .orange)
                         
-                        Toggle("Change app theme", isOn: $isToggleOn)
+                        Toggle(" ", isOn: $isToggleOn)
                             .foregroundColor(.white)
                     }
                 }
@@ -62,8 +61,11 @@ struct ProfileView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("background"))
         }
     }
+}
 
 
 #Preview {

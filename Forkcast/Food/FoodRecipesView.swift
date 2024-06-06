@@ -8,21 +8,56 @@
 import SwiftUI
 
 struct FoodRecipesView: View {
-    @ObservedObject private var viewModel = FoodRecipeViewModel()
-    
+    @StateObject private var viewModel = FoodRecipeViewModel()
+    @State private var isShowingDetails = false
+    @State private var searchText = ""
+    @State private var selectedWeatherTag: String?
+
     var body: some View {
         NavigationView {
-            List(viewModel.recipes, id: \.id) { recipe in
-                NavigationLink(destination: FoodRecipeDetailsView(recipe: recipe)) {
-                    FoodRecipeViewRow(recipe: recipe)
+            VStack {
+                
+                HStack {
+                    CustomTextField(pholder: "Search", isSearch: true, image: "magnifyingglass", text: $searchText)
+                        .padding(.leading, 20)
+                    Button(action: {
+                        if viewModel.isFilteringByWeather {
+                            viewModel.resetFilterByWeather()
+                        } else {
+                            viewModel.selectedWeatherTag = selectedWeatherTag
+                            viewModel.toggleFilterByWeather()
+                        }
+                        WeatherFilterTip().invalidate(reason: .actionPerformed)
+                    }) {
+                        WeatherView()
+                            .padding(.trailing, 20)
+                    }
+                    .popoverTip(WeatherFilterTip())
+                        
                 }
-                .listRowSeparator(.hidden)
+                    
+                List(viewModel.recipes) { recipe in
+                    Button(action: {
+                        viewModel.selectedRecipe = recipe
+                        isShowingDetails = true
+                    }) {
+                        FoodRecipeViewRow(recipe: recipe)
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color("background"))
+                }
+                .listStyle(.plain)
+                .scrollIndicators(.hidden)
+                .sheet(isPresented: $isShowingDetails) {
+                    if let selectedRecipe = viewModel.selectedRecipe {
+                        FoodRecipeDetailsView(recipe: selectedRecipe)
+                    }
+                }
+                .onAppear {
+                    viewModel.fetchData()
+                }
             }
-            .listStyle(.plain)
-            .scrollIndicators(.hidden)
-            .onAppear {
-                viewModel.fetchData()
-            }
+            .background(Color("background"))
         }
     }
 }

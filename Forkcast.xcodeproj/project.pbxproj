@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A377F672C08AFB600656BE1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F662C08AFB600656BE1 /* WeatherView.swift */; };
+		0A377F692C08AFE600656BE1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F682C08AFE600656BE1 /* WeatherModel.swift */; };
+		0A377F6B2C08B00100656BE1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F6A2C08B00100656BE1 /* WeatherManager.swift */; };
+		0A425DF82C0F473B00BCCD37 /* WeatherTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A425DF72C0F473B00BCCD37 /* WeatherTip.swift */; };
 		0A6122992C0615080031918C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6122982C0615080031918C /* FirebaseFirestoreSwift */; };
 		0A7658F62C04C171009241DD /* ForkcastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7658F52C04C171009241DD /* ForkcastApp.swift */; };
 		0A7658F82C04C171009241DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7658F72C04C171009241DD /* ContentView.swift */; };
@@ -30,9 +34,14 @@
 		0A7659322C060723009241DD /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7659312C060723009241DD /* AuthViewModel.swift */; };
 		0A7659342C06087F009241DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7659332C06087F009241DD /* User.swift */; };
 		0ACC81712C078F1A002DBE99 /* FoodRecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC81702C078F1A002DBE99 /* FoodRecipeDetailsView.swift */; };
+		0AE2220C2C0F92E400BB9A37 /* WeatherFilterTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2220B2C0F92E400BB9A37 /* WeatherFilterTip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A377F662C08AFB600656BE1 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		0A377F682C08AFE600656BE1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		0A377F6A2C08B00100656BE1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		0A425DF72C0F473B00BCCD37 /* WeatherTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTip.swift; sourceTree = "<group>"; };
 		0A7658F22C04C171009241DD /* Forkcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forkcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7658F52C04C171009241DD /* ForkcastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkcastApp.swift; sourceTree = "<group>"; };
 		0A7658F72C04C171009241DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +62,7 @@
 		0A7659312C060723009241DD /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		0A7659332C06087F009241DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0ACC81702C078F1A002DBE99 /* FoodRecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeDetailsView.swift; sourceTree = "<group>"; };
+		0AE2220B2C0F92E400BB9A37 /* WeatherFilterTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFilterTip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A377F6C2C08B1A400656BE1 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				0A377F662C08AFB600656BE1 /* WeatherView.swift */,
+				0A377F682C08AFE600656BE1 /* WeatherModel.swift */,
+				0A377F6A2C08B00100656BE1 /* WeatherManager.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		0A7658E92C04C171009241DD = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +109,7 @@
 		0A7658F42C04C171009241DD /* Forkcast */ = {
 			isa = PBXGroup;
 			children = (
+				0A377F6C2C08B1A400656BE1 /* Weather */,
 				0A7659092C04D14B009241DD /* Authentication */,
 				0A76592B2C05FB01009241DD /* Food */,
 				0ACC816F2C077E80002DBE99 /* Profile */,
@@ -98,6 +119,7 @@
 				0A7658F92C04C173009241DD /* Assets.xcassets */,
 				0A7658FB2C04C173009241DD /* Preview Content */,
 				0A76590A2C04E390009241DD /* Extensions */,
+				0AE2220A2C0F92CA00BB9A37 /* Tips */,
 			);
 			path = Forkcast;
 			sourceTree = "<group>";
@@ -158,6 +180,15 @@
 				0A76592E2C05FD37009241DD /* ProfileViewRow.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		0AE2220A2C0F92CA00BB9A37 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				0A425DF72C0F473B00BCCD37 /* WeatherTip.swift */,
+				0AE2220B2C0F92E400BB9A37 /* WeatherFilterTip.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,8 +275,11 @@
 				0A7659202C051DC0009241DD /* FoodRecipeViewRow.swift in Sources */,
 				0A7659062C04D0D2009241DD /* CustomTextField.swift in Sources */,
 				0A7659042C04D097009241DD /* LoginView.swift in Sources */,
+				0A377F692C08AFE600656BE1 /* WeatherModel.swift in Sources */,
 				0A7659282C053753009241DD /* FoodRecipesView.swift in Sources */,
+				0A377F672C08AFB600656BE1 /* WeatherView.swift in Sources */,
 				0A7659262C053286009241DD /* FoodRecipeModel.swift in Sources */,
+				0AE2220C2C0F92E400BB9A37 /* WeatherFilterTip.swift in Sources */,
 				0A7659342C06087F009241DD /* User.swift in Sources */,
 				0ACC81712C078F1A002DBE99 /* FoodRecipeDetailsView.swift in Sources */,
 				0A7659142C04F967009241DD /* SignUpView.swift in Sources */,
@@ -253,7 +287,9 @@
 				0A76590E2C04E6DC009241DD /* View+Extension.swift in Sources */,
 				0A7659222C052B04009241DD /* FoodRecipeViewModel.swift in Sources */,
 				0A7658F62C04C171009241DD /* ForkcastApp.swift in Sources */,
+				0A377F6B2C08B00100656BE1 /* WeatherManager.swift in Sources */,
 				0A7659322C060723009241DD /* AuthViewModel.swift in Sources */,
+				0A425DF82C0F473B00BCCD37 /* WeatherTip.swift in Sources */,
 				0A76592D2C05FB3E009241DD /* ProfileView.swift in Sources */,
 				0A76592F2C05FD37009241DD /* ProfileViewRow.swift in Sources */,
 			);
@@ -392,11 +428,11 @@
 				DEVELOPMENT_TEAM = QWQ84V5ZHW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ples give access to geo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -421,11 +457,11 @@
 				DEVELOPMENT_TEAM = QWQ84V5ZHW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ples give access to geo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,6 +7,7 @@
 
 import FirebaseCore
 import SwiftUI
+import TipKit
 
 @main
 struct ForkcastApp: App {
@@ -21,6 +22,13 @@ struct ForkcastApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .task {
+                    try? Tips.resetDatastore()
+                    try? Tips.configure([
+                        .displayFrequency(.daily),
+                        .datastoreLocation(.applicationDefault)
+                    ])
+                }
         }
     }
 }
