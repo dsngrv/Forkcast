@@ -41,7 +41,7 @@ struct FoodRecipesView: View {
                         viewModel.selectedRecipe = recipe
                         isShowingDetails = true
                     }) {
-                        FoodRecipeViewRow(recipe: recipe)
+                        FoodRecipeViewRow(viewModel: viewModel, recipe: recipe)
                     }
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color("background"))

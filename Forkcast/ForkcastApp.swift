@@ -12,6 +12,7 @@ import TipKit
 @main
 struct ForkcastApp: App {
     
+    @StateObject private var foodViewModel = FoodRecipeViewModel()
     @StateObject var viewModel = AuthViewModel()
     
     init() {
@@ -22,6 +23,11 @@ struct ForkcastApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .environmentObject(foodViewModel)
+                .onAppear {
+                    foodViewModel.fetchData()
+                    foodViewModel.fetchFavoriteRecipes()
+                }
                 .task {
                     try? Tips.resetDatastore()
                     try? Tips.configure([
