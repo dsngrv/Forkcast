@@ -12,17 +12,16 @@ import FirebaseStorage
 class FoodRecipeViewModel: ObservableObject {
     @Published var recipes: [FoodRecipeModel] = []
     @Published var selectedRecipe: FoodRecipeModel?
-    @Published var filteredRecipesByWeather: [FoodRecipeModel] = []
     @Published var isFilteringByWeather: Bool = false
-    @Published var favoriteRecipes: [String] = []
+    @Published var favoriteRecipes: [FoodRecipeModel] = []
+
     private var db = Firestore.firestore()
     private let storage = Storage.storage()
+
     var selectedWeatherTag: String? {
         didSet {
             if isFilteringByWeather {
-                guard let selectedWeatherTag = selectedWeatherTag else {
-                    return
-                }
+                guard let selectedWeatherTag = selectedWeatherTag else { return }
                 filterRecipesByWeather(tag: selectedWeatherTag)
             }
         }
@@ -31,14 +30,12 @@ class FoodRecipeViewModel: ObservableObject {
     init() {
         fetchFavoriteRecipes()
     }
-    
+
     func updateWeatherTag() {
-        guard let selectedTag = WeatherManager.shared.getWeatherTag() else {
-            return
-        }
+        guard let selectedTag = WeatherManager.shared.getWeatherTag() else { return }
         selectedWeatherTag = selectedTag
     }
-    
+
     func toggleFavorite(for recipe: FoodRecipeModel) {
         var updatedRecipe = recipe
         if recipe.isFavorite {
@@ -46,12 +43,12 @@ class FoodRecipeViewModel: ObservableObject {
         } else {
             addRecipeToUserFavorites(recipe: recipe)
         }
-        updatedRecipe.isFavorite.toggle() // Изменяем состояние избранного у рецепта
+        updatedRecipe.isFavorite.toggle()  // Изменяем состояние избранного у рецепта
         if let index = recipes.firstIndex(where: { $0.id == recipe.id }) {
-            recipes[index] = updatedRecipe // Обновляем рецепт в списке
+            recipes[index] = updatedRecipe  // Обновляем рецепт в списке
         }
     }
-    
+
     func fetchData() {
         db.collection("food_recipes").addSnapshotListener { snap, error in
             guard let documents = snap?.documents else {
@@ -65,16 +62,16 @@ class FoodRecipeViewModel: ObservableObject {
                 let tag = data["tag"] as? String ?? ""
                 let weatherTag = data["weatherTag"] as? String ?? ""
                 let instruction = data["instruction"] as? String ?? ""
-                let ingredience = data["ingredience"] as? String ?? ""
+                let ingredients = data["ingredients"] as? String ?? ""
                 let image = data["image"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
-                var recipe = FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredience: ingredience, image: image, desriprion: description)
-                recipe.isFavorite = self.favoriteRecipes.contains(id)
+                var recipe = FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredience: ingredients, image: image, desriprion: description)
+                recipe.isFavorite = self.favoriteRecipes.contains { $0.id == id }
                 return recipe
             }
         }
     }
-    
+
     func addRecipeToUserFavorites(recipe: FoodRecipeModel) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let uniqueId = "\(userId)_\(recipe.id)"
@@ -101,7 +98,7 @@ class FoodRecipeViewModel: ObservableObject {
             }
         }
     }
-    
+
     func removeRecipeFromUserFavorites(recipe: FoodRecipeModel) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let uniqueId = "\(userId)_\(recipe.id)"
@@ -127,7 +124,6 @@ class FoodRecipeViewModel: ObservableObject {
     
     func resetFilterByWeather() {
         isFilteringByWeather = false
-        filteredRecipesByWeather = []
         fetchData()
     }
     
@@ -140,7 +136,7 @@ class FoodRecipeViewModel: ObservableObject {
         }
         isFilteringByWeather.toggle()
     }
-    
+
     func loadImage(from url: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = storage.reference(forURL: url)
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -156,7 +152,7 @@ class FoodRecipeViewModel: ObservableObject {
             }
         }
     }
-    
+
     func fetchFavoriteRecipes() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         db.collection("user_recipes")
@@ -166,14 +162,25 @@ class FoodRecipeViewModel: ObservableObject {
                     print("No favorite recipes documents")
                     return
                 }
-                self.favoriteRecipes = documents.map { $0["recipeId"] as? String ?? "" }
+                self.favoriteRecipes = documents.map { doc -> FoodRecipeModel in
+                    let data = doc.data()
+                    let id = data["recipeId"] as? String ?? ""
+                    let title = data["title"] as? String ?? ""
+                    let tag = data["tag"] as? String ?? ""
+                    let weatherTag = data["weatherTag"] as? String ?? ""
+                    let instruction = data["instruction"] as? String ?? ""
+                    let ingredients = data["ingredients"] as? String ?? ""
+                    let image = data["image"] as? String ?? ""
+                    let description = data["description"] as? String ?? ""
+                    return FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredience: ingredients, image: image, desriprion: description, isFavorite: true)
+                }
                 self.updateRecipesFavoriteState()
             }
     }
-    
+
     private func updateRecipesFavoriteState() {
         recipes.indices.forEach { index in
-            recipes[index].isFavorite = favoriteRecipes.contains(recipes[index].id)
+            recipes[index].isFavorite = favoriteRecipes.contains { $0.id == recipes[index].id }
         }
         objectWillChange.send()
     }

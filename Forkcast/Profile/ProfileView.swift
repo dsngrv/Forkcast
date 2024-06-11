@@ -30,9 +30,7 @@ struct ProfileView: View {
                         }
                     }
                     
-                    Button {
-                        print("favor")
-                    } label: {
+                    NavigationLink(destination: FavoritesView()) {
                         ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
                     }
                 }
