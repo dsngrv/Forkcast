@@ -14,8 +14,25 @@ struct ContentView: View {
         
     var body: some View {
         
-            if viewModel.userSession != nil {
-                ProfileView()
+        if viewModel.userSession != nil {
+                TabView {
+                    FoodRecipesView()
+                        .tabItem {
+                            Label("Food", systemImage: "fork.knife")
+                        }
+
+                    Text("Drinks")
+                        .tabItem {
+                            Label("Drinks", systemImage: "mug.fill")
+                        }
+
+                    ProfileView()
+                        .tabItem {
+                            Label("Profile", systemImage: "person")
+                        }
+
+                }
+                .accentColor(Color("accent"))
             } else {
                 LoginView()
         }

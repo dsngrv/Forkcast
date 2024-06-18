@@ -14,25 +14,23 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        if let user = viewModel.currentUser {
-            List {
-                Section {
-                    VStack(alignment: .leading) {
-                        Text(user.name)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        
-                        Text(user.email)
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .accentColor(.gray)
+        NavigationView {
+            Form {
+                if let user = viewModel.currentUser {
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text(user.name)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                            
+                            Text(user.email)
+                                .font(.caption)
+                                .fontWeight(.regular)
+                                .accentColor(.gray)
+                        }
                     }
-                }
-                
-                Section {
-                    Button {
-                        print("favor")
-                    } label: {
+                    
+                    NavigationLink(destination: FavoritesView()) {
                         ProfileViewRow(imageName: "heart", title: "Favorites", tintColor: .red)
                     }
                 }
@@ -41,7 +39,7 @@ struct ProfileView: View {
                     HStack {
                         ProfileViewRow(imageName: "sun.max", title: "App Theme", tintColor: .orange)
                         
-                        Toggle("Change app theme", isOn: $isToggleOn)
+                        Toggle(" ", isOn: $isToggleOn)
                             .foregroundColor(.white)
                     }
                 }
@@ -61,9 +59,13 @@ struct ProfileView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("background"))
         }
     }
 }
+
+
 #Preview {
     ProfileView()
 }

@@ -8,29 +8,18 @@
 import SwiftUI
 
 struct FoodRecipeViewRow: View {
-    
+    @ObservedObject var viewModel: FoodRecipeViewModel
+    @State private var isFavorite: Bool
     var recipe: FoodRecipeModel
+
+    init(viewModel: FoodRecipeViewModel, recipe: FoodRecipeModel) {
+        self.viewModel = viewModel
+        self.recipe = recipe
+        _isFavorite = State(initialValue: recipe.isFavorite) // Инициализируем состояние на основе свойства рецепта
+    }
     
     var body: some View {
-        VStack {
-            
-            HStack {
-                Text(recipe.title)
-                    .font(.title)
-                
-                Spacer()
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.orange)
-                    .frame(width: 90, height: 30)
-                    .overlay {
-                        Text("Tag")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                    }
-            }
-            .padding(10)
-            
+        ZStack {
             if let url = URL(string: recipe.image) {
                 AsyncImage(url: url) { image in
                     image
@@ -43,27 +32,61 @@ struct FoodRecipeViewRow: View {
                     ProgressView()
                 }
             }
-            
-            Text(recipe.desriprion)
-                .font(.callout)
+            VStack {
+                HStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color("rectAccent"))
+                        .frame(height: 30)
+                        .overlay {
+                            Text(recipe.title)
+                                .font(.subheadline)
+                        }
+                    Spacer()
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color("rectAccent"))
+                        .frame(width: 90, height: 30)
+                        .overlay {
+                            Text(recipe.tag)
+                                .font(.caption)
+                        }
+                }
+                .padding(.top, 10)
                 .padding(10)
-            
-            Button {
-                
-            } label: {
-                Image(systemName: "heart")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .scaledToFill()
-                    .foregroundColor(.black)
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                                    isFavorite.toggle()
+                                    viewModel.toggleFavorite(for: recipe)
+                                }) {
+                                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .scaledToFill()
+                            .foregroundColor(.red)
+                            .fontWeight(.black)
+                            .padding(10)
+                    }
+                    .padding()
+                    .frame(width: 90, height: 30)
+                    .background(Color.white.opacity(0.8))
+                    .shadow(radius: 5)
+                    .cornerRadius(10)
+                    .padding(.bottom, 10)
                     .padding(10)
+                }
             }
-            
         }
-        .padding(8)
-        .background()
         .cornerRadius(20)
         .shadow(radius: 5)
+        .onReceive(viewModel.$recipes) { _ in
+            isFavorite = recipe.isFavorite
+        }
+    }
+    
+    private func toggleFavoriteStatus() {
+        viewModel.toggleFavorite(for: recipe)
+        isFavorite.toggle()
     }
 }
 
