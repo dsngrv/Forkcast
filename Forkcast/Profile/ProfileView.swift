@@ -12,6 +12,7 @@ struct ProfileView: View {
     @AppStorage("isToggleOn") private var isToggleOn = false
     
     @EnvironmentObject var viewModel: AuthViewModel
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
@@ -37,10 +38,13 @@ struct ProfileView: View {
                 
                 Section("App settings") {
                     HStack {
-                        ProfileViewRow(imageName: "sun.max", title: "App Theme", tintColor: .orange)
+                        ProfileViewRow(imageName: colorScheme == .light ? "sun.max" : "moon", title: "App Theme", tintColor: .orange)
+                        
+                        Spacer()
                         
                         Toggle(" ", isOn: $isToggleOn)
-                            .foregroundColor(.white)
+                            .toggleStyle(
+                                ColoredToggleStyle(onColor: Color("accent"), offColor: Color("accent"), thumbColor: Color(.white)))
                     }
                 }
                 
@@ -65,6 +69,28 @@ struct ProfileView: View {
     }
 }
 
+struct ColoredToggleStyle: ToggleStyle {
+    var onColor = Color(UIColor.green)
+    var offColor = Color(UIColor.systemGray5)
+    var thumbColor = Color.white
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            Button(action: { configuration.isOn.toggle() } )
+            {
+                RoundedRectangle(cornerRadius: 16, style: .circular)
+                    .fill(configuration.isOn ? onColor : offColor)
+                    .frame(width: 50, height: 29)
+                    .overlay(
+                        Circle()
+                            .fill(thumbColor)
+                            .shadow(radius: 1, x: 0, y: 1)
+                            .padding(1.5)
+                            .offset(x: configuration.isOn ? 10 : -10))
+            }
+        }
+    }
+}
 
 #Preview {
     ProfileView()

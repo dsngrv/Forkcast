@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2802322C20B13D00E8DEF6 /* DrinkRecipeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2802312C20B13D00E8DEF6 /* DrinkRecipeViewRow.swift */; };
+		0A2802342C20B15400E8DEF6 /* DrinksRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2802332C20B15400E8DEF6 /* DrinksRecipesView.swift */; };
+		0A2802362C20B16B00E8DEF6 /* DrinkRecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2802352C20B16B00E8DEF6 /* DrinkRecipeDetailsView.swift */; };
+		0A2802382C20B18F00E8DEF6 /* DrinkRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2802372C20B18F00E8DEF6 /* DrinkRecipeModel.swift */; };
+		0A28023A2C20B1AC00E8DEF6 /* DrinkRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2802392C20B1AC00E8DEF6 /* DrinkRecipeViewModel.swift */; };
 		0A377F672C08AFB600656BE1 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F662C08AFB600656BE1 /* WeatherView.swift */; };
 		0A377F692C08AFE600656BE1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F682C08AFE600656BE1 /* WeatherModel.swift */; };
 		0A377F6B2C08B00100656BE1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A377F6A2C08B00100656BE1 /* WeatherManager.swift */; };
@@ -35,11 +40,15 @@
 		0A7659342C06087F009241DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7659332C06087F009241DD /* User.swift */; };
 		0ACC81712C078F1A002DBE99 /* FoodRecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC81702C078F1A002DBE99 /* FoodRecipeDetailsView.swift */; };
 		0AD114D02C172FB6002E9ACA /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD114CF2C172FB6002E9ACA /* FavoritesView.swift */; };
-		0AD114D22C17319D002E9ACA /* DrinkRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD114D12C17319D002E9ACA /* DrinkRecipeViewModel.swift */; };
 		0AE2220C2C0F92E400BB9A37 /* WeatherFilterTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2220B2C0F92E400BB9A37 /* WeatherFilterTip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A2802312C20B13D00E8DEF6 /* DrinkRecipeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRecipeViewRow.swift; sourceTree = "<group>"; };
+		0A2802332C20B15400E8DEF6 /* DrinksRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksRecipesView.swift; sourceTree = "<group>"; };
+		0A2802352C20B16B00E8DEF6 /* DrinkRecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRecipeDetailsView.swift; sourceTree = "<group>"; };
+		0A2802372C20B18F00E8DEF6 /* DrinkRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRecipeModel.swift; sourceTree = "<group>"; };
+		0A2802392C20B1AC00E8DEF6 /* DrinkRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRecipeViewModel.swift; sourceTree = "<group>"; };
 		0A377F662C08AFB600656BE1 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		0A377F682C08AFE600656BE1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		0A377F6A2C08B00100656BE1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -65,7 +74,6 @@
 		0A7659332C06087F009241DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0ACC81702C078F1A002DBE99 /* FoodRecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeDetailsView.swift; sourceTree = "<group>"; };
 		0AD114CF2C172FB6002E9ACA /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		0AD114D12C17319D002E9ACA /* DrinkRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRecipeViewModel.swift; sourceTree = "<group>"; };
 		0AE2220B2C0F92E400BB9A37 /* WeatherFilterTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFilterTip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +92,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A2802302C20B10000E8DEF6 /* Drinks */ = {
+			isa = PBXGroup;
+			children = (
+				0A2802392C20B1AC00E8DEF6 /* DrinkRecipeViewModel.swift */,
+				0A2802372C20B18F00E8DEF6 /* DrinkRecipeModel.swift */,
+				0A2802332C20B15400E8DEF6 /* DrinksRecipesView.swift */,
+				0A2802312C20B13D00E8DEF6 /* DrinkRecipeViewRow.swift */,
+				0A2802352C20B16B00E8DEF6 /* DrinkRecipeDetailsView.swift */,
+			);
+			path = Drinks;
+			sourceTree = "<group>";
+		};
 		0A377F6C2C08B1A400656BE1 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +133,7 @@
 		0A7658F42C04C171009241DD /* Forkcast */ = {
 			isa = PBXGroup;
 			children = (
+				0A2802302C20B10000E8DEF6 /* Drinks */,
 				0A377F6C2C08B1A400656BE1 /* Weather */,
 				0A7659092C04D14B009241DD /* Authentication */,
 				0ACC816F2C077E80002DBE99 /* Profile */,
@@ -125,7 +146,6 @@
 				0A7658F92C04C173009241DD /* Assets.xcassets */,
 				0A7658FB2C04C173009241DD /* Preview Content */,
 				0AD114CF2C172FB6002E9ACA /* FavoritesView.swift */,
-				0AD114D12C17319D002E9ACA /* DrinkRecipeViewModel.swift */,
 			);
 			path = Forkcast;
 			sourceTree = "<group>";
@@ -278,16 +298,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD114D02C172FB6002E9ACA /* FavoritesView.swift in Sources */,
+				0A28023A2C20B1AC00E8DEF6 /* DrinkRecipeViewModel.swift in Sources */,
 				0A7659122C04F4F8009241DD /* Validator.swift in Sources */,
+				0A2802322C20B13D00E8DEF6 /* DrinkRecipeViewRow.swift in Sources */,
 				0A7659202C051DC0009241DD /* FoodRecipeViewRow.swift in Sources */,
 				0A7659062C04D0D2009241DD /* CustomTextField.swift in Sources */,
 				0A7659042C04D097009241DD /* LoginView.swift in Sources */,
 				0A377F692C08AFE600656BE1 /* WeatherModel.swift in Sources */,
 				0A7659282C053753009241DD /* FoodRecipesView.swift in Sources */,
+				0A2802362C20B16B00E8DEF6 /* DrinkRecipeDetailsView.swift in Sources */,
+				0A2802342C20B15400E8DEF6 /* DrinksRecipesView.swift in Sources */,
 				0A377F672C08AFB600656BE1 /* WeatherView.swift in Sources */,
 				0A7659262C053286009241DD /* FoodRecipeModel.swift in Sources */,
 				0AE2220C2C0F92E400BB9A37 /* WeatherFilterTip.swift in Sources */,
-				0AD114D22C17319D002E9ACA /* DrinkRecipeViewModel.swift in Sources */,
+				0A2802382C20B18F00E8DEF6 /* DrinkRecipeModel.swift in Sources */,
 				0A7659342C06087F009241DD /* User.swift in Sources */,
 				0ACC81712C078F1A002DBE99 /* FoodRecipeDetailsView.swift in Sources */,
 				0A7659142C04F967009241DD /* SignUpView.swift in Sources */,

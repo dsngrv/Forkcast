@@ -14,6 +14,7 @@ struct ForkcastApp: App {
     
     @StateObject private var foodViewModel = FoodRecipeViewModel()
     @StateObject var viewModel = AuthViewModel()
+    @AppStorage("isToggleOn") private var isToggleOn = false
     
     init() {
         FirebaseApp.configure()
@@ -22,6 +23,8 @@ struct ForkcastApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isToggleOn ? .dark : .light)
+
                 .environmentObject(viewModel)
                 .environmentObject(foodViewModel)
                 .onAppear {
@@ -29,7 +32,9 @@ struct ForkcastApp: App {
                     foodViewModel.fetchFavoriteRecipes()
                 }
                 .task {
+                    //сброс типов для теста
                     try? Tips.resetDatastore()
+                    //конфигурация типов
                     try? Tips.configure([
                         .displayFrequency(.daily),
                         .datastoreLocation(.applicationDefault)

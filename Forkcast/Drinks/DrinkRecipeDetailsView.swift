@@ -1,21 +1,20 @@
 //
-//  FoodRecipeDetailsView.swift
+//  DrinkRecipeDetailsView.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 29.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
 import SwiftUI
 
-struct FoodRecipeDetailsView: View {
-    
+struct DrinkRecipeDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var viewModel: FoodRecipeViewModel
+    @ObservedObject var viewModel: DrinkRecipeViewModel
     @State private var isFavorite: Bool
-    var recipe: FoodRecipeModel
+    var recipe: DrinkRecipeModel
     
-    init(viewModel: FoodRecipeViewModel, recipe: FoodRecipeModel) {
+    init(viewModel: DrinkRecipeViewModel, recipe: DrinkRecipeModel) {
         self.viewModel = viewModel
         self.recipe = recipe
         _isFavorite = State(initialValue: recipe.isFavorite) // Инициализируем состояние на основе свойства рецепта
@@ -107,9 +106,7 @@ struct FoodRecipeDetailsView: View {
                 Section(header: Text("Ingredients")
                     .fontWeight(.semibold)) {
                         ForEach(Array(recipe.ingredients.enumerated()), id: \.offset) { index, ingredient in
-                            HStack {
                                 Text("\(index + 1). \(ingredient)")
-                            }
                         }
                     }
 
@@ -132,5 +129,5 @@ struct FoodRecipeDetailsView: View {
 
 
 #Preview {
-    FoodRecipeDetailsView(viewModel: FoodRecipeViewModel(), recipe: FoodRecipeModel(id: "Delicious Recipe", title: "EDA", weatherTag:  "Cold", tag: "для жары", instruction: ["berem kuchu fruktov i narezaem kak vam bol'she nravitsya"], ingredients: ["1 \nIngredient 2 \nIngredient 3 \nIngredient 4"], image: "https://thumbs.dreamstime.com/b/%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B5%D0%B4%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%84%D0%B8%D1%82%D0%BD%D0%B5%D1%81%D0%B0-102707769.jpg", description: "fruktovaya polyana, kotoraya ideal'no podoidet vam v jarkii den'"))
+    DrinkRecipeDetailsView(viewModel: DrinkRecipeViewModel(), recipe: DrinkRecipeModel(id: "Delicious Recipe", title: "EDA", weatherTag:  "Cold", tag: "для жары", instruction: ["berem kuchu fruktov i narezaem kak vam bol'she nravitsya"], ingredients: ["1 \nIngredient 2 \nIngredient 3 \nIngredient 4"], image: "https://thumbs.dreamstime.com/b/%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B5%D0%B4%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%84%D0%B8%D1%82%D0%BD%D0%B5%D1%81%D0%B0-102707769.jpg", description: "fruktovaya polyana, kotoraya ideal'no podoidet vam v jarkii den'"))
 }

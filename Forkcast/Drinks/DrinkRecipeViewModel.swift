@@ -1,26 +1,26 @@
 //
-//  FoodRecipeModel.swift
+//  DrinkRecipeViewModel.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class FoodRecipeViewModel: ObservableObject {
-    @Published var recipes: [FoodRecipeModel] = [] {
+class DrinkRecipeViewModel: ObservableObject {
+    @Published var recipes: [DrinkRecipeModel] = [] {
         didSet {
             // Обновляем фильтрованные рецепты, когда общий список обновляется
             filteredRecipes = recipes
         }
     }
-    @Published var selectedRecipe: FoodRecipeModel?
+    @Published var selectedRecipe: DrinkRecipeModel?
     @Published var isFilteringByWeather: Bool = false
-    @Published var favoriteRecipes: [FoodRecipeModel] = []
+    @Published var favoriteRecipes: [DrinkRecipeModel] = []
     
-    @Published var filteredRecipes: [FoodRecipeModel] = []
+    @Published var filteredRecipes: [DrinkRecipeModel] = []
 
     private var db = Firestore.firestore()
     private let storage = Storage.storage()
@@ -53,7 +53,7 @@ class FoodRecipeViewModel: ObservableObject {
         selectedWeatherTag = selectedTag
     }
 
-    func toggleFavorite(for recipe: FoodRecipeModel) {
+    func toggleFavorite(for recipe: DrinkRecipeModel) {
         var updatedRecipe = recipe
         if recipe.isFavorite {
             removeRecipeFromUserFavorites(recipe: recipe)
@@ -67,12 +67,12 @@ class FoodRecipeViewModel: ObservableObject {
     }
 
     func fetchData() {
-        db.collection("food_recipes").addSnapshotListener { snap, error in
+        db.collection("drinks_recipes").addSnapshotListener { snap, error in
             guard let documents = snap?.documents else {
                 print("No documents")
                 return
             }
-            self.recipes = documents.map { snap -> FoodRecipeModel in
+            self.recipes = documents.map { snap -> DrinkRecipeModel in
                 let data = snap.data()
                 let id = data["id"] as? String ?? ""
                 let title = data["title"] as? String ?? ""
@@ -82,7 +82,7 @@ class FoodRecipeViewModel: ObservableObject {
                 let ingredients = data["ingredients"] as? [String] ?? []
                 let image = data["image"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
-                var recipe = FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description)
+                var recipe = DrinkRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description)
                 recipe.isFavorite = self.favoriteRecipes.contains { $0.id == id }
                 return recipe
             }
@@ -91,10 +91,10 @@ class FoodRecipeViewModel: ObservableObject {
         }
     }
 
-    func addRecipeToUserFavorites(recipe: FoodRecipeModel) {
+    func addRecipeToUserFavorites(recipe: DrinkRecipeModel) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let uniqueId = "\(userId)_\(recipe.id)"
-        let docRef = db.collection("user_food_recipes").document(uniqueId)
+        let docRef = db.collection("user_drinks_recipes").document(uniqueId)
         let recipeData: [String: Any] = [
             "userId": userId,
             "recipeId": recipe.id,
@@ -118,10 +118,10 @@ class FoodRecipeViewModel: ObservableObject {
         }
     }
 
-    func removeRecipeFromUserFavorites(recipe: FoodRecipeModel) {
+    func removeRecipeFromUserFavorites(recipe: DrinkRecipeModel) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let uniqueId = "\(userId)_\(recipe.id)"
-        db.collection("user_food_recipes").document(uniqueId).delete { error in
+        db.collection("user_drinks_recipes").document(uniqueId).delete { error in
             if let error = error {
                 print("Ошибка при удалении рецепта из избранного: \(error)")
             } else {
@@ -174,14 +174,14 @@ class FoodRecipeViewModel: ObservableObject {
 
     func fetchFavoriteRecipes() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
-        db.collection("user_food_recipes")
+        db.collection("user_drinks_recipes")
             .whereField("userId", isEqualTo: userId)
             .addSnapshotListener { snap, error in
                 guard let documents = snap?.documents else {
                     print("No favorite recipes documents")
                     return
                 }
-                self.favoriteRecipes = documents.map { doc -> FoodRecipeModel in
+                self.favoriteRecipes = documents.map { doc -> DrinkRecipeModel in
                     let data = doc.data()
                     let id = data["recipeId"] as? String ?? ""
                     let title = data["title"] as? String ?? ""
@@ -191,7 +191,7 @@ class FoodRecipeViewModel: ObservableObject {
                     let ingredients = data["ingredients"] as? [String] ?? []
                     let image = data["image"] as? String ?? ""
                     let description = data["description"] as? String ?? ""
-                    return FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description, isFavorite: true)
+                    return DrinkRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description, isFavorite: true)
                 }
                 self.updateRecipesFavoriteState()
             }

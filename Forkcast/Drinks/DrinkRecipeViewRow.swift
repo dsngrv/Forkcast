@@ -1,18 +1,18 @@
 //
-//  FoodRecipeViewRow.swift
+//  DrinkRecipeViewRow.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
 import SwiftUI
 
-struct FoodRecipeViewRow: View {
-    @ObservedObject var viewModel: FoodRecipeViewModel
+struct DrinkRecipeViewRow: View {
+    @ObservedObject var viewModel: DrinkRecipeViewModel
     @State private var isFavorite: Bool
-    var recipe: FoodRecipeModel
+    var recipe: DrinkRecipeModel
     
-    init(viewModel: FoodRecipeViewModel, recipe: FoodRecipeModel) {
+    init(viewModel: DrinkRecipeViewModel, recipe: DrinkRecipeModel) {
         self.viewModel = viewModel
         self.recipe = recipe
         _isFavorite = State(initialValue: recipe.isFavorite) // Инициализируем состояние на основе свойства рецепта
@@ -90,6 +90,7 @@ struct FoodRecipeViewRow: View {
     }
 }
 
+
 #Preview {
-    FoodRecipesView()
+    DrinksRecipesView()
 }

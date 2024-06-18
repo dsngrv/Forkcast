@@ -38,7 +38,7 @@ struct SignUpView: View {
                     CustomTextField(pholder: "Email", isEmail: true, image: "mail", text: $email)
                         .padding(.top, 25)
                     
-                    CustomTextField(pholder: "Name", isSecure: false, isEmail: false, isSearch: false, image: "person", text: $name)
+                    CustomTextField(pholder: "Name", image: "person", text: $name)
                         .padding(.top, 10)
                     
                     CustomTextField(pholder: "Password", isSecure: true, image: "lock", text: $password)

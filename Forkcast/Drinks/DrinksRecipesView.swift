@@ -1,14 +1,14 @@
 //
-//  FoodRecipesView.swift
+//  DrinksRecipesView.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
 import SwiftUI
 
-struct FoodRecipesView: View {
-    @StateObject private var viewModel = FoodRecipeViewModel()
+struct DrinksRecipesView: View {
+    @StateObject private var viewModel = DrinkRecipeViewModel()
     @State private var isShowingDetails = false
     @State private var searchText = ""
     @State private var selectedWeatherTag: String?
@@ -44,7 +44,7 @@ struct FoodRecipesView: View {
                         viewModel.selectedRecipe = recipe
                         isShowingDetails = true
                     }) {
-                        FoodRecipeViewRow(viewModel: viewModel, recipe: recipe)
+                        DrinkRecipeViewRow(viewModel: viewModel, recipe: recipe)
                     }
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color("background"))
@@ -53,7 +53,7 @@ struct FoodRecipesView: View {
                 .scrollIndicators(.hidden)
                 .fullScreenCover(isPresented: $isShowingDetails) {
                     if let selectedRecipe = viewModel.selectedRecipe {
-                        FoodRecipeDetailsView(viewModel: viewModel, recipe: selectedRecipe)
+                        DrinkRecipeDetailsView(viewModel: viewModel, recipe: selectedRecipe)
                     }
                 }
                 .onAppear {
@@ -66,5 +66,5 @@ struct FoodRecipesView: View {
 }
 
 #Preview {
-    FoodRecipesView()
+    DrinksRecipesView()
 }

@@ -21,7 +21,7 @@ struct ContentView: View {
                             Label("Food", systemImage: "fork.knife")
                         }
 
-                    Text("Drinks")
+                    DrinksRecipesView()
                         .tabItem {
                             Label("Drinks", systemImage: "mug.fill")
                         }

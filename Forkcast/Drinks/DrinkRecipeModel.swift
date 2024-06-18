@@ -1,13 +1,13 @@
 //
-//  FoodRecipeModel.swift
+//  DrinkRecipeModel.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
-import Foundation
+import SwiftUI
 
-struct FoodRecipeModel: Identifiable, Equatable {
+struct DrinkRecipeModel: Identifiable, Equatable {
     
     var id: String
     var title: String

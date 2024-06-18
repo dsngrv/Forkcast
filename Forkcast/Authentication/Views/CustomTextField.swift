@@ -55,6 +55,7 @@ struct CustomTextField: View {
                             .keyboardType(.emailAddress)
                             .focused($isEnabled)
                             .textContentType(.emailAddress)
+                            .disableAutocorrection(true)
                         
                         if (text.count != 0) {
                             Image(systemName: text.isValidMail(email: text) ? "checkmark" : "xmark")
@@ -91,7 +92,8 @@ struct CustomTextField: View {
                         TextField(pholder, text: $text)
                             .keyboardType(.default)
                             .focused($isEnabled)
-                            .textContentType(.name)
+                            .disableAutocorrection(true)
+                            .textContentType(.none)
                         
                         if (text.count != 0) {
                             Image(systemName: !text.isEmpty ? "checkmark" : "xmark")
