@@ -1,18 +1,18 @@
 //
-//  FoodRecipeViewRow.swift
+//  DrinkRecipeViewRow.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
 import SwiftUI
 
-struct FoodRecipeViewRow: View {
-    @ObservedObject var viewModel: FoodRecipeViewModel
+struct DrinkRecipeViewRow: View {
+    @ObservedObject var viewModel: DrinkRecipeViewModel
     @State private var isFavorite: Bool
-    var recipe: FoodRecipeModel
-
-    init(viewModel: FoodRecipeViewModel, recipe: FoodRecipeModel) {
+    var recipe: DrinkRecipeModel
+    
+    init(viewModel: DrinkRecipeViewModel, recipe: DrinkRecipeModel) {
         self.viewModel = viewModel
         self.recipe = recipe
         _isFavorite = State(initialValue: recipe.isFavorite) // Инициализируем состояние на основе свойства рецепта
@@ -39,6 +39,7 @@ struct FoodRecipeViewRow: View {
                         .frame(height: 30)
                         .overlay {
                             Text(recipe.title)
+                                .foregroundColor(Color("text"))
                                 .font(.subheadline)
                         }
                     Spacer()
@@ -47,6 +48,7 @@ struct FoodRecipeViewRow: View {
                         .frame(width: 90, height: 30)
                         .overlay {
                             Text(recipe.tag)
+                                .foregroundColor(Color("text"))
                                 .font(.caption)
                         }
                 }
@@ -56,10 +58,10 @@ struct FoodRecipeViewRow: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                                    isFavorite.toggle()
-                                    viewModel.toggleFavorite(for: recipe)
-                                }) {
-                                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                        isFavorite.toggle()
+                        viewModel.toggleFavorite(for: recipe)
+                    }) {
+                        Image(systemName: isFavorite ? "heart.fill" : "heart")
                             .resizable()
                             .frame(width: 10, height: 10)
                             .scaledToFill()
@@ -90,6 +92,7 @@ struct FoodRecipeViewRow: View {
     }
 }
 
+
 #Preview {
-    FoodRecipesView()
+    DrinksRecipesView()
 }

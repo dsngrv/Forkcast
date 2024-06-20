@@ -1,13 +1,13 @@
 //
-//  FoodRecipeModel.swift
+//  DrinkRecipeModel.swift
 //  Forkcast
 //
-//  Created by Дмитрий Снигирев on 28.05.2024.
+//  Created by Дмитрий Снигирев on 17.06.2024.
 //
 
-import Foundation
+import SwiftUI
 
-class FoodRecipeModel: Identifiable, ObservableObject {
+class DrinkRecipeModel: Identifiable, ObservableObject {
     
     var id: String
     var title: String
@@ -18,6 +18,7 @@ class FoodRecipeModel: Identifiable, ObservableObject {
     var image: String
     var description: String
     @Published var isFavorite: Bool
+    
     
     init(id: String, title: String, weatherTag: String, tag: String, instruction: [String], ingredients: [String], image: String, description: String, isFavorite: Bool) {
         self.id = id
@@ -30,4 +31,5 @@ class FoodRecipeModel: Identifiable, ObservableObject {
         self.description = description
         self.isFavorite = isFavorite
     }
+    
 }

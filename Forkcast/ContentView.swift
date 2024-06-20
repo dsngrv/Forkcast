@@ -10,31 +10,24 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // Внедрение объекта окружения для доступа к AuthViewModel
     @EnvironmentObject var viewModel: AuthViewModel
+    
+    // Инициализатор для скрытия стандартного Tab Bar
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
         
     var body: some View {
         
+        // Проверка, существует ли сессия пользователя
         if viewModel.userSession != nil {
-                TabView {
-                    FoodRecipesView()
-                        .tabItem {
-                            Label("Food", systemImage: "fork.knife")
-                        }
-
-                    Text("Drinks")
-                        .tabItem {
-                            Label("Drinks", systemImage: "mug.fill")
-                        }
-
-                    ProfileView()
-                        .tabItem {
-                            Label("Profile", systemImage: "person")
-                        }
-
-                }
+            // Если сессия есть, отображаем CustomTabBar с заданным цветом акцента
+            CustomTabBar()
                 .accentColor(Color("accent"))
-            } else {
-                LoginView()
+        } else {
+            // Если сессии нет, отображаем LoginView
+            LoginView()
         }
     }
 }
