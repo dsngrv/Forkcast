@@ -39,6 +39,7 @@ struct DrinkRecipeViewRow: View {
                         .frame(height: 30)
                         .overlay {
                             Text(recipe.title)
+                                .foregroundColor(Color("text"))
                                 .font(.subheadline)
                         }
                     Spacer()
@@ -47,6 +48,7 @@ struct DrinkRecipeViewRow: View {
                         .frame(width: 90, height: 30)
                         .overlay {
                             Text(recipe.tag)
+                                .foregroundColor(Color("text"))
                                 .font(.caption)
                         }
                 }

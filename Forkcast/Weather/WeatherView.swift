@@ -15,11 +15,7 @@ struct WeatherView: View {
     
     var body: some View {
         
-//        let temperature = Int(weatherManager.weatherData?.temperature ?? 0)
-//        let isCold = temperature < 20
-        
         HStack {
-            // Display weather information if available
             if let weatherData = weatherManager.weatherData {
                 RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 4).foregroundColor(Color("accent"))
                     .foregroundColor(.white)
@@ -28,29 +24,20 @@ struct WeatherView: View {
                         Text("\(Int(weatherData.temperature))°C")
                             .font(.callout)
                     }
-//                    .padding()
-//                
-//                VStack {
-//                    Text("\(weatherData.locationName)")
-//                        .font(.callout).bold()
-//                    Text("\(weatherData.condition)")
-//                        .font(.body).bold()
-//                        .foregroundColor(.gray)
-//                }
+
             } else {
-                // Display a progress view while weather data is being fetched
+                // Отображение progress view во время получения данных о погоде
                 ProgressView()
             }
         }
         .frame(width: 50, height: 50)
-//        .background(isCold ? Color.blue : Color.orange)
         .cornerRadius(10)
         .onAppear {
-            // Request location when the view appears
+            // запрос локации при появлении вью
             locationManager.requestLocation()
         }
         .onReceive(locationManager.$location) { location in
-            // Fetch weather data when the location is updated
+            // получаем данные о погоде, когда локация обновлена
             guard let location = location else { return }
             WeatherManager.shared.fetchWeather(for: location)
         }

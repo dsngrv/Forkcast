@@ -54,7 +54,7 @@ class FoodRecipeViewModel: ObservableObject {
     }
 
     func toggleFavorite(for recipe: FoodRecipeModel) {
-        var updatedRecipe = recipe
+        let updatedRecipe = recipe
         if recipe.isFavorite {
             removeRecipeFromUserFavorites(recipe: recipe)
         } else {
@@ -82,7 +82,7 @@ class FoodRecipeViewModel: ObservableObject {
                 let ingredients = data["ingredients"] as? [String] ?? []
                 let image = data["image"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
-                var recipe = FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description)
+                var recipe = FoodRecipeModel(id: id, title: title, weatherTag: weatherTag, tag: tag, instruction: instruction, ingredients: ingredients, image: image, description: description, isFavorite: false)
                 recipe.isFavorite = self.favoriteRecipes.contains { $0.id == id }
                 return recipe
             }

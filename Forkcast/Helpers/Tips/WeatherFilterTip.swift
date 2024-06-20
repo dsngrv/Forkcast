@@ -10,10 +10,10 @@ import TipKit
 
 struct WeatherFilterTip: Tip {
     var title: Text {
-        Text("Кнопка фильтрации")
+        Text("Filter".localized)
     }
     
     var message: Text? {
-        Text("Вы можете нажать на эту кнопку и получить список рецептов, которые подойдут для текущей погоды")
+        Text("You can click on this button and get a list of recipes that are suitable for the current weather".localized)
     }
 }

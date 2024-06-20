@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DrinkRecipeModel: Identifiable, Equatable {
+class DrinkRecipeModel: Identifiable, ObservableObject {
     
     var id: String
     var title: String
@@ -17,6 +17,19 @@ struct DrinkRecipeModel: Identifiable, Equatable {
     var ingredients: [String]
     var image: String
     var description: String
-    var isFavorite: Bool = false
+    @Published var isFavorite: Bool
+    
+    
+    init(id: String, title: String, weatherTag: String, tag: String, instruction: [String], ingredients: [String], image: String, description: String, isFavorite: Bool) {
+        self.id = id
+        self.title = title
+        self.weatherTag = weatherTag
+        self.tag = tag
+        self.instruction = instruction
+        self.ingredients = ingredients
+        self.image = image
+        self.description = description
+        self.isFavorite = isFavorite
+    }
     
 }

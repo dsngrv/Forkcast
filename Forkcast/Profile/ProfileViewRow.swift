@@ -22,7 +22,7 @@ struct ProfileViewRow: View {
             
             Text(title)
                 .font(.subheadline)
-                .foregroundColor(Color("accent"))
+                .foregroundColor(Color("text"))
         }
     }
 }

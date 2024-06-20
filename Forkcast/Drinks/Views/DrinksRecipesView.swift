@@ -18,8 +18,9 @@ struct DrinksRecipesView: View {
             VStack {
                 
                 HStack {
-                    CustomTextField(pholder: "Search", isSearch: true, image: "magnifyingglass", text: $searchText)
+                    CustomTextField(pholder: "Search".localized, fieldType: .search, image: "magnifyingglass", text: $searchText)
                         .padding(.leading, 20)
+                        .padding(.top, 2)
                         .onChange(of: searchText) {
                                                     viewModel.filterRecipes(with: searchText)
                                                 }
@@ -34,10 +35,15 @@ struct DrinksRecipesView: View {
                     }) {
                         WeatherView()
                             .padding(.trailing, 20)
+                            .padding(.top, 2)
                     }
-                    .popoverTip(WeatherFilterTip())
-                        
                 }
+                
+                if viewModel.isFilteringByWeather {
+                    Text("Filtered by current weather".localized)
+                                        .foregroundColor(.gray)
+                                        .padding(.top, 10)
+                                }
                     
                 List(viewModel.filteredRecipes) { recipe in
                     Button(action: {
