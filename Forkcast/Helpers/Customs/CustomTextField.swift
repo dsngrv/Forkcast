@@ -47,7 +47,10 @@ struct CustomTextField: View {
                 // Иконка справа для отображения валидности пароля
                 if !text.isEmpty {
                     Image(systemName: text.isValidPassword(password: text) ? "checkmark" : "xmark")
-                        .foregroundColor(.black)
+                        .resizable()
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(Color("text"))
+                        .padding(.trailing ,10)
                 }
                 
             case .email:
@@ -61,7 +64,10 @@ struct CustomTextField: View {
                 // Иконка справа для отображения валидности email
                 if !text.isEmpty {
                     Image(systemName: text.isValidMail(email: text) ? "checkmark" : "xmark")
-                        .foregroundColor(.black)
+                        .resizable()
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(Color("text"))
+                        .padding(.trailing ,10)
                 }
                 
             case .search:
@@ -76,7 +82,8 @@ struct CustomTextField: View {
                 // Удаление текста при нажатии на иконку "крестик"
                 if !text.isEmpty {
                     Image(systemName: "xmark")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("text"))
+                        .padding(.trailing ,10)
                         .onTapGesture {
                             text = ""
                         }

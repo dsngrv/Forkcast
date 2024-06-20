@@ -36,7 +36,7 @@ struct LoginView: View {
                         .padding(.top, 25)
                     
                     CustomTextField(pholder: "Password".localized, fieldType: .secure,  image: "lock", text: $password)
-                        .padding(.top, 10)
+                        .padding(.top, 25)
                 }
                 .padding(.leading ,50)
                 .padding(.trailing, 50)
@@ -52,7 +52,7 @@ struct LoginView: View {
                 }
                 .frame(width: 300, height: 50)
                 .background(Color("rectAccent"))
-                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                .shadow(radius: 10)
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.8)
                 .cornerRadius(10)
